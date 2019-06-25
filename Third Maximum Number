@@ -1,0 +1,23 @@
+class Solution {
+public:
+	int thirdMax(vector<int>& nums) {
+
+		long long firstBig = LLONG_MIN,
+			      secondBig = LLONG_MIN,
+			      thirdBig = LLONG_MIN;
+		for (int i = 0; i < nums.size(); i++) {
+			if (nums[i] <= thirdBig || nums[i] == secondBig || nums[i] == firstBig) {
+				continue;
+			} 
+			thirdBig = nums[i];
+			if (secondBig < thirdBig) {
+				swap(secondBig, thirdBig);
+			}
+			if (firstBig <secondBig) {
+				swap(firstBig, secondBig);
+			}
+
+		}
+		return thirdBig == LLONG_MIN ? firstBig : thirdBig;
+	}
+};
